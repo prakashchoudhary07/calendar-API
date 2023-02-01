@@ -49,17 +49,19 @@ const googleAuthCallback = (
 
   try {
     return passport.authenticate("google", {}, async (err, _, user) => {
+      console.log(user);
+
       if (err) {
         logger.error(err);
         return res.boom(Boom.unauthorized("User cannot be authenticated"));
       }
 
-      const userData = await authService.loginOrSignupWithGoogle(user._json);
+      // const userData = await authService.loginOrSignupWithGoogle(user._json);
 
-      const token = authService.generateAuthToken({ userId: userData?.id });
+      // const token = authService.generateAuthToken({ userId: userData?.id });
 
       // respond with a cookie
-      res.cookie(config.get("userAccessToken.cookieName"), token, {
+      res.cookie(config.get("userAccessToken.cookieName"), "TESTTOKEN", {
         domain: rCalUiUrl.hostname,
         expires: new Date(
           Date.now() + config.get("userAccessToken.ttl") * 1000
@@ -72,6 +74,8 @@ const googleAuthCallback = (
       return res.redirect(rCalUiUrl.href);
     })(req, res, next);
   } catch (err: any) {
+    console.log(err);
+
     logger.error(err);
 
     // Redirect to an error page in case of an error
