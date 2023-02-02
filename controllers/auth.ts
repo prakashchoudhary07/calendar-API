@@ -58,10 +58,10 @@ const googleAuthCallback = (
 
       // const userData = await authService.loginOrSignupWithGoogle(user._json);
 
-      // const token = authService.generateAuthToken({ userId: userData?.id });
+      // const token = authService.generateAuthToken({ userId: 12344 });
 
       // respond with a cookie
-      res.cookie(config.get("userAccessToken.cookieName"), "TESTTOKEN", {
+      res.cookie(config.get("userAccessToken.cookieName"), "token", {
         domain: rCalUiUrl.hostname,
         expires: new Date(
           Date.now() + config.get("userAccessToken.ttl") * 1000

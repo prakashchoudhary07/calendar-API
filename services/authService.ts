@@ -10,11 +10,17 @@ import { Users } from "@prisma/client";
  * @param payload {Object} - Payload to be added in the JWT
  * @return {String} - Generated JWT
  */
-const generateAuthToken = (payload: jwtPayload): string => {
-  return jwt.sign(payload, config.get("userAccessToken.privateKey"), {
-    algorithm: "RS256",
-    expiresIn: config.get("userAccessToken.ttl"),
-  });
+const generateAuthToken = (payload: jwtPayload): any => {
+  try {
+    console.log(config.get("userAccessToken.privateKey"));
+
+    return jwt.sign(payload, config.get("userAccessToken.privateKey"), {
+      algorithm: "RS256",
+      expiresIn: config.get("userAccessToken.ttl"),
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**
