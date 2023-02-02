@@ -56,13 +56,13 @@ const googleAuthCallback = (
         return res.boom(Boom.unauthorized("User cannot be authenticated"));
       }
 
-      // const userData = await authService.loginOrSignupWithGoogle(user._json);
+      const userData = await authService.loginOrSignupWithGoogle(user._json);
 
       // const token = authService.generateAuthToken({ userId: 12344 });
 
       // respond with a cookie
       res.cookie(config.get("userAccessToken.cookieName"), "token", {
-        domain: rCalUiUrl.hostname,
+        domain: ".railway.app",
         expires: new Date(
           Date.now() + config.get("userAccessToken.ttl") * 1000
         ),
