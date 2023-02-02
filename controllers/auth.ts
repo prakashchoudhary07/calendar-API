@@ -56,7 +56,7 @@ const googleAuthCallback = (
         return res.boom(Boom.unauthorized("User cannot be authenticated"));
       }
 
-      const userData = await authService.loginOrSignupWithGoogle(user._json);
+      // const userData = await authService.loginOrSignupWithGoogle(user._json);
 
       // const token = authService.generateAuthToken({ userId: 12344 });
 
